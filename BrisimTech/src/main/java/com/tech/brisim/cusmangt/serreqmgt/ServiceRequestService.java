@@ -5,87 +5,76 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
 
 @Service
 public class ServiceRequestService {
 
-    @Autowired
-    private ServiceRequestRepository serviceRequestRepository;
+    private final ServiceRequestRepository serviceRequestRepository;
 
-    // Method to retrieve all service requests for a specific customer
-    public List<ServiceRequestDTO> getAllRequestsByCustomer(String customerId) {
-        return serviceRequestRepository.findByCustomerId(customerId).stream()
-                .map(this::convertToDto)
-                .collect(Collectors.toList());
+    @Autowired
+    public ServiceRequestService(ServiceRequestRepository serviceRequestRepository) {
+        this.serviceRequestRepository = serviceRequestRepository;
     }
 
-    // Method to create a new service request
+    // Create a new service request
     public ServiceRequestDTO createRequest(@NotNull ServiceRequestDTO requestDto) {
         ServiceRequest serviceRequest = new ServiceRequest();
-        serviceRequest.setCustomerId(requestDto.getCustomerId());
-        serviceRequest.setRequestType(requestDto.getRequestType());
-        serviceRequest.setDescription(requestDto.getDescription());
-        serviceRequest.setStatus(ServiceRequest.RequestStatus.PENDING);  // Set default status
-        serviceRequest.setCreatedAt(new Date());  // Set created timestamp
+        populateServiceRequest(serviceRequest, requestDto);
+        serviceRequest.setCreatedAt(new Date()); // Set created timestamp
 
-        serviceRequest = serviceRequestRepository.save(serviceRequest);
-        return convertToDto(serviceRequest);
+        ServiceRequest savedRequest = serviceRequestRepository.save(serviceRequest);
+        return convertToDto(savedRequest);
     }
 
-    // Method to retrieve a service request by ID
+    // Retrieve a service request by ID
     public Optional<ServiceRequestDTO> getRequestById(Long id) {
         return serviceRequestRepository.findById(id)
                 .map(this::convertToDto);
     }
 
-    // Method to update a service request
+    // Update a service request
     public ServiceRequestDTO updateRequest(Long id, @NotNull ServiceRequestDTO requestDto) {
         ServiceRequest serviceRequest = serviceRequestRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Service Request not found"));
 
-        // Update fields
-        serviceRequest.setRequestType(requestDto.getRequestType());
-        serviceRequest.setDescription(requestDto.getDescription());
+        populateServiceRequest(serviceRequest, requestDto);
+        updateStatus(serviceRequest, requestDto.getStatus());
 
-        // Update status based on the input from the DTO
-        if (requestDto.getStatus() != null) {
-            switch (requestDto.getStatus()) {
-                case "IN_PROGRESS":
-                    serviceRequest.setStatus(ServiceRequest.RequestStatus.IN_PROGRESS);
-                    break;
-                case "COMPLETED":
-                    serviceRequest.setStatus(ServiceRequest.RequestStatus.COMPLETED);
-                    break;
-                case "CANCELED":
-                    serviceRequest.setStatus(ServiceRequest.RequestStatus.CANCELED);
-                    break;
-                default:
-                    serviceRequest.setStatus(ServiceRequest.RequestStatus.PENDING);
-                    break;
-            }
-        }
-
-        serviceRequest = serviceRequestRepository.save(serviceRequest);
-        return convertToDto(serviceRequest);
+        ServiceRequest updatedRequest = serviceRequestRepository.save(serviceRequest);
+        return convertToDto(updatedRequest);
     }
 
-    // Method to delete a service request
+    // Delete a service request
     public void deleteRequest(Long id) {
         serviceRequestRepository.deleteById(id);
     }
 
-    // Method to convert ServiceRequest entity to ServiceRequestDTO
+    // Convert ServiceRequest entity to ServiceRequestDTO
     private ServiceRequestDTO convertToDto(@NotNull ServiceRequest serviceRequest) {
         ServiceRequestDTO dto = new ServiceRequestDTO();
         dto.setId(serviceRequest.getId());
-        dto.setCustomerId(serviceRequest.getCustomerId());
         dto.setRequestType(serviceRequest.getRequestType());
         dto.setDescription(serviceRequest.getDescription());
         dto.setStatus(serviceRequest.getStatus().name());
+        dto.setCreatedAt(serviceRequest.getCreatedAt());
         return dto;
+    }
+
+    // Populate fields from DTO to ServiceRequest
+    private void populateServiceRequest(ServiceRequest serviceRequest, ServiceRequestDTO requestDto) {
+        serviceRequest.setRequestType(requestDto.getRequestType());
+        serviceRequest.setDescription(requestDto.getDescription());
+    }
+
+    // Update the status of the service request based on DTO
+    private void updateStatus(ServiceRequest serviceRequest, String status) {
+        if (status != null) {
+            try {
+                serviceRequest.setStatus(ServiceRequest.RequestStatus.valueOf(status.toUpperCase())); // Handle case insensitivity
+            } catch (IllegalArgumentException e) {
+                serviceRequest.setStatus(ServiceRequest.RequestStatus.PENDING); // Default to PENDING if invalid status is provided
+            }
+        }
     }
 }
