@@ -50,6 +50,8 @@ public class OTPService {
     // Generate a random OTP
     private int generateRandomOTP() {
         Random random = new Random();
-        return 100000 + random.nextInt(900000); // Generate a 6-digit OTP
+        int min = (int) Math.pow(10, OTP_LENGTH - 1);
+        int max = (int) Math.pow(10, OTP_LENGTH) - 1;
+        return min + random.nextInt(max - min + 1);
     }
 }

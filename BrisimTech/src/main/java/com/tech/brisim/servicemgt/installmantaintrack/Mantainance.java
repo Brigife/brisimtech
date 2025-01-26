@@ -1,8 +1,6 @@
 package com.tech.brisim.servicemgt.installmantaintrack;
 
-
 import com.tech.brisim.cusmangt.serreqmgt.ServiceRequest;
-import com.tech.brisim.servicemgt.models.SviceReqst;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,4 +20,3 @@ public class Mantainance {
 
     // Getters and setters
 }
-

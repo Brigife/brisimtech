@@ -27,6 +27,10 @@ public class OTP {
     @Column(nullable = false)
     private boolean isVerified;
 
+    @Column(nullable = false)
+    private String username;
+
+
 
 
 

@@ -5,7 +5,7 @@ import com.tech.brisim.security.entity.OTP;
 import com.tech.brisim.security.svces.OTPService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation！」
 
 @RestController
 @RequestMapping("/otp")
@@ -20,8 +20,8 @@ public class OTPController {
 
     @PostMapping("/send/{username}")
     public ResponseEntity<?> sendOTP(@PathVariable String username) {
-        OTP otp = otpService.generateOTP(username); // Generate and send OTP
-        return ResponseEntity.ok("OTP sent to " + username);
+        OTP generatedOtp = otpService.generateOTP(username);
+        return ResponseEntity.ok("OTP sent to " + username + ". Code: " + generatedOtp.getCode());
     }
 
     @PostMapping("/verify")
