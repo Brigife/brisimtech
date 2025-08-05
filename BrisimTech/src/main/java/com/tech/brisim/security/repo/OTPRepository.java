@@ -14,5 +14,6 @@ public interface OTPRepository extends JpaRepository<OTP, Long> {
 
     Optional<OTP> findFirstByUserOrderByExpirationTimeDesc(User user);
     OTP findByUsername(String username);
+    void deleteByUser(User user);
 }
 
