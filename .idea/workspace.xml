@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a3a4124-aac7-4369-a80e-e63a526e01a4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/BrisimTech/hs_err_pid5044.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BrisimTech/src/main/java/com/tech/brisim/security/controllers/OTPController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BrisimTech/src/main/java/com/tech/brisim/security/controllers/OTPController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BrisimTech/src/main/java/com/tech/brisim/security/repo/OTPRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BrisimTech/src/main/java/com/tech/brisim/security/repo/OTPRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BrisimTech/src/main/java/com/tech/brisim/security/svces/OTPService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BrisimTech/src/main/java/com/tech/brisim/security/svces/OTPService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BrisimTech/src/main/java/com/tech/brisim/security/utils/TokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/BrisimTech/src/main/java/com/tech/brisim/security/utils/TokenProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BrisimTech/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/BrisimTech/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
