@@ -1,9 +1,6 @@
 package com.tech.brisim.servicemgt.dtos;
 
-import lombok.Data;
-
 import java.math.BigDecimal;
-@Data
 public class ServiceDTO {
     private Long id;
     private String name;
@@ -11,6 +8,44 @@ public class ServiceDTO {
     private BigDecimal price;
     private String status;
 
-    // Constructors, Getters, Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
 

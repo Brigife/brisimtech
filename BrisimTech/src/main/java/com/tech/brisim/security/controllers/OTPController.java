@@ -1,7 +1,6 @@
 package com.tech.brisim.security.controllers;
 
 import com.tech.brisim.security.dto.OTPRequest;
-import com.tech.brisim.security.entity.OTP;
 import com.tech.brisim.security.svces.OTPService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +25,7 @@ public class OTPController {
     @PostMapping("/send/{username}")
     public ResponseEntity<?> sendOTP(@PathVariable String username) {
         try {
-            OTP generatedOtp = otpService.generateOTP(username);
+            otpService.generateOTP(username);
 
             // ✅ Avoid returning actual OTP in production
             return ResponseEntity.ok(Map.of(
@@ -35,6 +34,7 @@ public class OTPController {
             ));
 
             // 🔧 Optional for development only:
+            // OTP generatedOtp = otpService.generateOTP(username);
             // return ResponseEntity.ok(Map.of(
             //     "message", "OTP sent successfully",
             //     "username", username,

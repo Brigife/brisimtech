@@ -2,10 +2,7 @@ package com.tech.brisim.security.entity;
 
 
 import jakarta.persistence.*;
-import lombok.Data;
-
 @Entity
-@Data
 @Table(name = "roles")
 public class Role {
 
@@ -15,5 +12,21 @@ public class Role {
 
     @Column(nullable = false, unique = true)
     private String name; // Role name (e.g., ROLE_USER, ROLE_ADMIN)
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
 

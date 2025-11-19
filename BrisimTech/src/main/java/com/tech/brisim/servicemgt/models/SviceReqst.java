@@ -1,10 +1,8 @@
 package com.tech.brisim.servicemgt.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import java.time.LocalDateTime;
 
-@Data
 @Entity
 @Table(name = "service_requests")
 public class SviceReqst {
@@ -25,5 +23,43 @@ public class SviceReqst {
     @Column(name = "request_date", nullable = false, updatable = false)
     private LocalDateTime requestDate = LocalDateTime.now();
 
-    // Constructors, Getters, Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Svce getSvce() {
+        return svce;
+    }
+
+    public void setSvce(Svce svce) {
+        this.svce = svce;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
+    public ServiceStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ServiceStatus status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getRequestDate() {
+        return requestDate;
+    }
+
+    public void setRequestDate(LocalDateTime requestDate) {
+        this.requestDate = requestDate;
+    }
 }

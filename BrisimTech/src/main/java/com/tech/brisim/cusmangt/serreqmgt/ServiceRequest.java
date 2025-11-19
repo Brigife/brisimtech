@@ -1,11 +1,9 @@
 package com.tech.brisim.cusmangt.serreqmgt;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import java.util.Date;
 
 @Entity
-@Data
 @Table(name = "service_requests")
 public class ServiceRequest {
 
@@ -39,5 +37,53 @@ public class ServiceRequest {
 
     public enum RequestStatus {
         PENDING, IN_PROGRESS, COMPLETED, CANCELED
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getRequestType() {
+        return requestType;
+    }
+
+    public void setRequestType(String requestType) {
+        this.requestType = requestType;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public RequestStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(RequestStatus status) {
+        this.status = status;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getRequestDate() {
+        return requestDate;
+    }
+
+    public void setRequestDate(Date requestDate) {
+        this.requestDate = requestDate;
     }
 }

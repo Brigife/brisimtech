@@ -1,12 +1,9 @@
 package com.tech.brisim.cusmangt.feedbackreview;
 
 import jakarta.persistence.*;
-import lombok.Data;
-
 import java.util.Date;
 
 @Entity
-@Data
 @Table(name = "feedback")
 public class Feedback {
     @Id
@@ -30,5 +27,53 @@ public class Feedback {
     @PrePersist
     protected void onCreate() {
         createdAt = new Date();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public Long getServiceRequestId() {
+        return serviceRequestId;
+    }
+
+    public void setServiceRequestId(Long serviceRequestId) {
+        this.serviceRequestId = serviceRequestId;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

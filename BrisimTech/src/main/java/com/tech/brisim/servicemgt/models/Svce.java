@@ -1,12 +1,10 @@
 package com.tech.brisim.servicemgt.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
 
 import java.math.BigDecimal;
 
 @Entity
-@Data
 @Table(name = "services")
 public class Svce {
 

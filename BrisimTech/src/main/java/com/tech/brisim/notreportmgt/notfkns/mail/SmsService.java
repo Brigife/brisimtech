@@ -3,14 +3,12 @@ package com.tech.brisim.notreportmgt.notfkns.mail;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 
 @Service
-@Data
 public class SmsService {
 
     // Injected Twilio credentials from application properties
