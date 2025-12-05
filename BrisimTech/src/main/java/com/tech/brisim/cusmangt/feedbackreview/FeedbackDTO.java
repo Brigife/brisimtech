@@ -1,5 +1,7 @@
 package com.tech.brisim.cusmangt.feedbackreview;
 
+import lombok.Data;
+
 
 
 @Data

@@ -2,6 +2,7 @@ package com.tech.brisim.security.utils;
 
 
 import org.springframework.stereotype.Component;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Component
 public class PasswordEncoderUtil {
