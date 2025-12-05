@@ -57,15 +57,15 @@ public class JwtUtil {
     // Extract all claims from JWT token
     private Claims extractAllClaims(String token) {
         try {
-                Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
-                return Jwts.parserBuilder()
-                    .setSigningKey(key)
-                    .build()
+                // Use the older jjwt API (parser()) when parserBuilder() is not available.
+                // Parse using the raw secret bytes for compatibility with older jjwt versions.
+                byte[] secretBytes = SECRET_KEY.getBytes(StandardCharsets.UTF_8);
+                return Jwts.parser()
+                    .setSigningKey(secretBytes)
                     .parseClaimsJws(token)
                     .getBody();
-        } catch (ExpiredJwtException e) {
+        } catch (io.jsonwebtoken.ExpiredJwtException e) {
             return null; // Handle expired token
         }
     }
 }
-
