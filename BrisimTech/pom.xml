@@ -154,21 +154,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<!-- OpenRewrite: uncomment and run locally to apply automated migration recipes.
-			<plugin>
-				<groupId>org.openrewrite</groupId>
-				<artifactId>rewrite-maven-plugin</artifactId>
-				<version>5.20.0</version>
-				<configuration>
-					Example active recipes - run locally and tweak as needed
-					<activeRecipes>
-						Replace javax.* with jakarta.*
-						<recipe>org.openrewrite.java.migrate.MigrateJavaxToJakarta</recipe>
-						Attempt Spring Boot upgrade (if available for target)
-						org.openrewrite.java.spring.boot.UpgradeSpringBoot_3_5 (example)
-					</activeRecipes>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 	<repositories>
